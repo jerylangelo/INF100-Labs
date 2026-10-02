@@ -1,6 +1,6 @@
 import os 
 import json
-
+#Weekly Lab 4
 
 inventory = [
     {
@@ -24,7 +24,6 @@ inventory = [
 ]
 def display_all():
     global inventory
-    print(inventory)
     print("\nCurrent Inventory:")
     print("-"*50)
 
