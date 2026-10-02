@@ -23,6 +23,8 @@ inventory = [
     }
 ]
 def display_all():
+    global inventory
+    print(inventory)
     print("\nCurrent Inventory:")
     print("-"*50)
 
@@ -55,7 +57,7 @@ def add_product():
 def update_stock():
     print("\nUpdate Stock")
 
-    product_id = ("Enter Product ID: ")
+    product_id = input("Enter Product ID: ")
 
     for product in inventory:
         if product["id"] == product_id:
@@ -86,16 +88,17 @@ def search_product():
     print("Product not found.")
 
 def load_inventory():
+    global inventory
     if os.path.exists("inventory.json"):
         with open("inventory.json", "r") as file:
-            global inventory
             inventory = json.load(file)
-            print("Inventory loaded successfully.")
+        print("Inventory loaded successfully.")    
+            
     else:
-        inventory = []
-        print("No existing inventory found. Starting with an empty inventory.")
-
+        print("No existing inventory found. Starting with default inventory.")
+        return []
 def save_inventory():
+    global inventory
     print("Saving inventory...")
     with open("inventory.json", "w") as file:
         json.dump(inventory, file, indent=4)
@@ -130,6 +133,8 @@ def menu():
             break    
         else:
             print("Invalid option. Please try again.")
-            
+
 
                 
+load_inventory()
+menu()
