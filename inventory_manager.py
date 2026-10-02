@@ -1,6 +1,6 @@
 import os 
 import json
-#Weekly Lab 4
+#Weekly Lab 5
 
 inventory = [
     {

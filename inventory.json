@@ -28,5 +28,11 @@
         "name": "Webcam",
         "price": 20.0,
         "stock": 1
+    },
+    {
+        "id": "P006",
+        "name": "TV",
+        "price": 1000.0,
+        "stock": 1
     }
 ]
