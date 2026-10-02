@@ -1,3 +1,7 @@
+import os 
+import json
+
+
 inventory = [
     {
         "id": "P001",
@@ -81,4 +85,20 @@ def search_product():
             return
     print("Product not found.")
 
+def load_inventory():
+    if os.path.exists("inventory.json"):
+        with open("inventory.json", "r") as file:
+            global inventory
+            inventory = json.load(file)
+            print("Inventory loaded successfully.")
+    else:
+        inventory = []
+        print("No existing inventory found. Starting with an empty inventory.")
 
+def save_inventory():
+    print("Saving inventory...")
+    with open("inventory.json", "w") as file:
+        json.dump(inventory, file, indent=4)
+
+    print("Inventory saved successfully to inventory.json.")
+    
