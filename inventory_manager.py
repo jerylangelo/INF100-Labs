@@ -1,40 +1,10 @@
 import os 
 import json
-#Weekly Lab 5
+from product import Product
+from inventory import Inventory
+#Weekly Lab 8
+inventory = Inventory()
 
-inventory = [
-    {
-        "id": "P001",
-        "name": "Laptop",
-        "price": 1200.00,
-        "stock": 15
-    },
-    {
-        "id": "P002",
-        "name": "Mouse",
-        "price": 25.50,
-        "stock": 40
-    },
-    {
-        "id": "P003",
-        "name": "Keyboard",
-        "price": 45.00,
-        "stock": 25
-    }
-]
-def display_all():
-    global inventory
-    print("\nCurrent Inventory:")
-    print("-"*50)
-
-    for product in inventory:
-        print(
-            f"ID:{product['id']} | "
-            f"Name:{product['name']} | "
-            f"Price: ${product['price']:.2f} | "
-            f"Stock:{product['stock']}"
-        )
-    print("-"*50)
 
 def add_product():
     print("\nAdd New Product")
@@ -43,64 +13,71 @@ def add_product():
     price = float(input("Price: "))
     stock = int(input("Stock Quantity: "))
 
-    product = {
-        "id": product_id,
-        "name": product_name,
-        "price": price,
-        "stock": stock
-        
-    }
-    inventory.append(product)
+    new_product = Product(product_id=product_id, name=product_name, price=price, stock=stock)
+    inventory.add_product(new_product)
     print(f"Product {product_name} added successfully!")
 
 def update_stock():
     print("\nUpdate Stock")
 
     product_id = input("Enter Product ID: ")
-
-    for product in inventory:
-        if product["id"] == product_id:
-            print("Product Found:")
-            print(f":Name: {product['name']}")
-            print(f"Current Stock: {product['stock']}")
-
-            new_stock = int(input("Enter New Stock Quantity: "))
-            product["stock"] = new_stock
-            print(f"Stock for {product['name']} updated to {new_stock}.")
-
-            return
-    print("Product not found.")
+    product = inventory.search_product(product_id)
+    if product:
+        product.display_information()
+        new_stock = int(input("Enter New Stock Quantity: "))
+        product.stock = new_stock
+        print(f"Stock for {product.name} updated to {new_stock}.")
+    else:
+        print("Product not found.")
 
 def search_product():
     print("\nSearch Product")
 
     product_id = input("Enter Product ID: ")
 
-    for product in inventory:
-        if product["id"] == product_id:
-            print("Product Found:")
-            print(f"ID: {product['id']}")
-            print(f"Name: {product['name']}")
-            print(f"Price: ${product['price']:.2f}")
-            print(f"Stock: {product['stock']}")
-            return
-    print("Product not found.")
+    product = inventory.search_product(product_id)
+    if product:
+        product.display_information()
+    else:
+        print("Product not found.")
 
 def load_inventory():
-    global inventory
-    if os.path.exists("inventory.json"):
-        with open("inventory.json", "r") as file:
-            inventory = json.load(file)
-        print("Inventory loaded successfully.")    
-            
-    else:
+    if not os.path.exists("inventory.json"):
         print("No existing inventory found. Starting with default inventory.")
-        return []
+    elif os.path.getsize("inventory.json") == 0:
+        print("Inventory file is empty. Starting with default inventory.")
+    else:
+        with open("inventory.json", "r") as file:
+            data = list(json.load(file))
+        for item in data:
+            prod = Product(
+                product_id=item["id"],
+                name=item["name"],
+                price=item["price"],
+                stock=item["stock"]
+            )
+            inventory.add_product(prod)
+        print("Inventory loaded successfully.")
+        return
+
+    # Default inventory
+    inventory.add_product(Product("P001", "Laptop", 999.99, 10))
+    inventory.add_product(Product("P002", "Mouse", 25.50, 40))
+    inventory.add_product(Product("P003", "Keyboard", 45.00, 25))
+
 def save_inventory():
-    global inventory
-    print("Saving inventory...")
+    data = [
+        {
+            "id": product.product_id,
+            "name": product.name,
+            "price": product.price,
+            "stock": product.stock
+        }
+        for product in inventory.products
+    ]
+
     with open("inventory.json", "w") as file:
-        json.dump(inventory, file, indent=4)
+        json.dump(data, file, indent=4)
 
     print("Inventory saved successfully to inventory.json.")
 
@@ -117,7 +94,7 @@ def menu():
         choice = input("Enter option: ")
 
         if choice == "1":
-            display_all()
+            inventory.display_all()
         elif choice == "2":
             add_product()
         elif choice == "3":
@@ -135,5 +112,6 @@ def menu():
 
 
                 
-load_inventory()
-menu()
+if __name__ == "__main__":
+    load_inventory()
+    menu()

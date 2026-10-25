@@ -2,8 +2,8 @@
     {
         "id": "P001",
         "name": "Laptop",
-        "price": 1200.0,
-        "stock": 15
+        "price": 999.99,
+        "stock": 10
     },
     {
         "id": "P002",
@@ -16,23 +16,5 @@
         "name": "Keyboard",
         "price": 45.0,
         "stock": 25
-    },
-    {
-        "id": "P004",
-        "name": "Test",
-        "price": 10.0,
-        "stock": 10
-    },
-    {
-        "id": "P005",
-        "name": "Webcam",
-        "price": 20.0,
-        "stock": 1
-    },
-    {
-        "id": "P006",
-        "name": "TV",
-        "price": 1000.0,
-        "stock": 1
     }
 ]
