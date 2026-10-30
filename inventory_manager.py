@@ -4,6 +4,7 @@ from PhysicalProduct import PhysicalProduct
 from DigitalProduct import DigitalProduct
 from product import Product
 from inventory import Inventory
+
 #Weekly Lab 8
 inventory = Inventory()
 
@@ -115,7 +116,9 @@ def menu():
 
                 
 if __name__ == "__main__":
-
+    test_product = PhysicalProduct("P005", "box", 59.99, 100, 450.0)
+    test_product.display_information()
+    print(f"Shipping Cost: ${test_product.calculate_shipping_cost():.2f}")
     load_inventory()
     menu()
     

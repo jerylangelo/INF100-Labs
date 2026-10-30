@@ -10,3 +10,7 @@ class DigitalProduct(Product):
     def display_information(self):
         super().display_information()  # Call the display_information method of the parent class Product.
         print(f"| Download Size: {self.file_size} MB")  # Print file size of DigitalProduct
+
+    def get_fulfillment_info(self):
+        return "This produce must be downloaded digitally."  # Implement the abstract method from the Product class.
+    
