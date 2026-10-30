@@ -12,7 +12,7 @@ class Product:
 
 
     def display_information(self):
-        print(f"ID: {self.product_id} | Name: {self.name} | Price: ${self.price:.2f} | Stock: {self.stock}")
+        print(f"ID: {self.product_id} | Name: {self.name} | Price: ${self.price:.2f} | Stock: {self.stock}", end=" ")
 
     
 

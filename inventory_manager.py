@@ -1,6 +1,7 @@
 import os 
 import json
 from PhysicalProduct import PhysicalProduct
+from DigitalProduct import DigitalProduct
 from product import Product
 from inventory import Inventory
 #Weekly Lab 8
@@ -114,6 +115,7 @@ def menu():
 
                 
 if __name__ == "__main__":
+
     load_inventory()
     menu()
     
