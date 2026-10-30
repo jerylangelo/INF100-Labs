@@ -9,7 +9,7 @@ class PhysicalProduct(Product, CanBeShipped):
 
     def display_information(self):
         super().display_information() #Calls the display_information method of the parent class Product.
-        print(f"| Weight: {self.weight} kg") #Print weight of PhysicalProduct
+        print(f"| Weight: {self.weight} kg | Shipping: ${self.calculate_shipping_cost():.2f}") #Print weight and shippping cost of PhysicalProduct
             
 
     def get_fulfillment_info(self):

@@ -3,24 +3,32 @@
         "id": "P001",
         "name": "Laptop",
         "price": 999.99,
-        "stock": 10
+        "stock": 10,
+        "type": "physical",
+        "weight": 2.5
     },
     {
         "id": "P002",
-        "name": "Mouse",
-        "price": 25.5,
-        "stock": 40
+        "name": "Antivirus Software",
+        "price": 45.0,
+        "stock": 25,
+        "type": "digital",
+        "download_size": 150.0
     },
     {
         "id": "P003",
-        "name": "Keyboard",
-        "price": 45.0,
-        "stock": 25
+        "name": "Monitor",
+        "price": 450.0,
+        "stock": 1,
+        "type": "physical",
+        "weight": 3.0
     },
     {
-        "id": "P004",
-        "name": "Monitor",
-        "price": 900.0,
-        "stock": 10
+        "id": "D001",
+        "name": "Cyberpunk",
+        "price": 75.0,
+        "stock": 1,
+        "type": "digital",
+        "download_size": 1000.0
     }
 ]
