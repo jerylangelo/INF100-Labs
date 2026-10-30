@@ -116,9 +116,6 @@ def menu():
 
                 
 if __name__ == "__main__":
-    test_product = PhysicalProduct("P005", "box", 59.99, 100, 450.0)
-    test_product.display_information()
-    print(f"Shipping Cost: ${test_product.calculate_shipping_cost():.2f}")
     load_inventory()
     menu()
     
