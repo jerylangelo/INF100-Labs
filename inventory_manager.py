@@ -44,7 +44,7 @@ def update_stock():
     print("\nUpdate Stock")
 
     product_id = input("Enter Product ID: ")
-    product = inventory.search_product(product_id)
+    product = inventory.find_product(product_id)
     if product:
         product.display_information()
         new_stock = int(input("Enter New Stock Quantity: "))
@@ -53,12 +53,12 @@ def update_stock():
     else:
         print("Product not found.")
 
-def search_product():
+def find_product():
     print("\nSearch Product")
 
     product_id = input("Enter Product ID: ")
 
-    product = inventory.search_product(product_id)
+    product = inventory.find_product(product_id)
     if product:
         product.display_information()
     else:
@@ -154,7 +154,7 @@ def menu():
         elif choice == "3":
             update_stock()
         elif choice == "4":
-            search_product()
+            find_product()
         elif choice == "5":
             print("Saving inventory before exit...")
             save_inventory()
