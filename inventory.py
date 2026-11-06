@@ -5,7 +5,7 @@ class Inventory:
         #list containing Product objects
         self.products: list[Product] = []
 
-    def add_product(self, product: Product):
+    def add_product(self, product: Product) -> None:
         self.products.append(product)
 
     def remove_product(self, product_id: str):
@@ -16,7 +16,7 @@ class Inventory:
         else:
             print(f"Product with ID {product_id} not found in inventory.")
 
-    def find_product(self, product_id: str):
+    def find_product(self, product_id: str) -> Product | None:
         for product in self.products:
             if product.product_id == product_id:
                 return product
