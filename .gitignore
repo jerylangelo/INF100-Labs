@@ -12,3 +12,5 @@ venv/
 # IDE settings
 .vscode/
 .idea/
+__pycache__/inventory.cpython-311.pyc
+*.pyc
