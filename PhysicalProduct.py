@@ -3,7 +3,7 @@ from product import Product
 from CanBeShipped import CanBeShipped
 
 class PhysicalProduct(Product, CanBeShipped):
-    def __init__(self, product_id: str, name: str, price: float, stock: int, weight: float, supplier: Supplier):
+    def __init__(self, product_id: str, name: str, price: float, stock: int, weight: float, supplier: Supplier,):
         super().__init__(product_id, name, price, stock, supplier) #This line calls the constructor of the parent class Product to initialize the common attributes.
 
         self.weight = weight # This initializes the weight attribute specific to PhysicalProduct.
