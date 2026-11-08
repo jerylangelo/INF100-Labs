@@ -31,5 +31,16 @@
         "supplier_email": "test@gmail.com",
         "type": "physical",
         "weight": 10.0
+    },
+    {
+        "id": "D001",
+        "name": "Minecraft",
+        "price": 26.0,
+        "stock": 1,
+        "supplier_id": "S002",
+        "supplier_name": "Microsoft",
+        "supplier_email": "microsoft@outlook.com",
+        "type": "digital",
+        "download_size": 23000.0
     }
 ]

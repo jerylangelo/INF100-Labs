@@ -7,7 +7,7 @@ from product import Product
 
 def run_all_lab8_tests() -> None:
     print("==================================================")
-    print("          STARTING LAB 8 VERIFICATION TESTS       ")
+    print("          LAB 8 VERIFICATION TESTS       ")
     print("==================================================")
 
     # 1. Test Association (Supplier & Product)
