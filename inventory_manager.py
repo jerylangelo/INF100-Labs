@@ -1,7 +1,9 @@
+import csv
 import os 
 import json
 from PhysicalProduct import PhysicalProduct
 from DigitalProduct import DigitalProduct
+from ProductFactory import ProductFactory
 from Supplier import Supplier
 from product import Product
 from inventory import Inventory
@@ -134,6 +136,48 @@ def save_inventory():
         json.dump(data, file, indent=4)
 
     print("Inventory saved successfully to inventory.json.")
+
+def get_positive_float(prompt: str) -> float:
+    """Repeatedly prompts the user until a valid positive float is entered"""
+    while True:
+        try:
+            value = float(input(prompt))
+            if value <= 0:
+                print("Please enter a number greater than zero.")
+                continue
+            return value
+        except ValueError:
+            print("Please enter a valid number, e.g. 12.50")
+
+def load_products(path: str, inventory: Inventory, supplier: Supplier) -> None:
+    """Reads products from a CSV file, creates them via factory, and adds to inventory"""
+    loaded = 0
+    try:
+        file = open(path, newline="")
+    except FileNotFoundError:
+        print(f"Products file not found: {path}")
+    else:
+        with file:
+            reader = csv.reader(file)
+            header = next(reader, None)  # Skip header row
+            for row in reader:
+                if not row:
+                    continue
+                try:
+                    # Unpack CSV columns: product_type, product_id, name, price, stock_quantity
+                    p_type, p_id, name, price_str, stock_str = [col.strip() for col in row]
+                    price = float(price_str)
+                    stock = int(stock_str)
+                    
+                    # Create product via factory (assuming extra param like weight/size defaults or parses from row if available)
+                    product = ProductFactory.create(p_type, p_id, name, price, stock, supplier)
+                    inventory.add_product(product)
+                    loaded += 1
+                except ValueError as e:
+                    print(f"Skipping invalid row {row}: {e}")
+            print(f"{loaded} products loaded.")
+    finally:
+        print("Load attempt finished.")
 
 def menu():
     while True: 
