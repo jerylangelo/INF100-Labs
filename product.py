@@ -3,6 +3,11 @@ from abc import ABC, abstractmethod
 from Supplier import Supplier
 class Product(ABC): 
     def __init__(self, product_id: str, name: str, price: float, stock: int, supplier: Supplier) -> None:
+        if price <= 0:
+            raise ValueError("Product price must be greater than zero.")
+        if stock < 0:
+            raise ValueError("Stock quantity cannot be negative.")
+        
         self.product_id = product_id
         self.name = name
         self.price = price
